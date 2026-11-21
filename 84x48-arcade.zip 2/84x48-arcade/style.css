@@ -1,0 +1,163 @@
+/* Layout idea: a printed handset manual. Copy and game index on the left, the handset itself on the right; one column on phones with the handset first. */
+:root{
+  color-scheme: light;
+  --paper:#e2e8e1;
+  --paper-deep:#d2dbd2;
+  --ink:#1c2333;
+  --ink-soft:#4d5870;
+  --shell:#2b3466;
+  --shell-hi:#44529a;
+  --lcd:#c7f0d8;
+  --lcd-ink:#43523d;
+  --signal:#e2542b;
+  --display:"Pixelify Sans","Courier New",monospace;
+  --body:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+.page{
+  max-width:1000px;
+  margin:0 auto;
+  padding:28px 20px 48px;
+  display:grid;
+  gap:28px;
+  grid-template-columns:1fr;
+}
+header.top{display:flex;flex-direction:column;gap:6px}
+.eyebrow{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+}
+h1{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(34px,8vw,56px);
+  line-height:1;
+  margin:0;
+  text-wrap:balance;
+}
+h1 span{color:var(--signal)}
+.lede{max-width:56ch;margin:6px 0 0;color:var(--ink-soft)}
+
+/* ---------- handset ---------- */
+.stage{display:flex;justify-content:center}
+.handset{
+  width:min(100%,340px);
+  padding:22px 20px 26px;
+  border-radius:38px 38px 64px 64px;
+  background:linear-gradient(160deg,var(--shell-hi),var(--shell) 45%);
+  box-shadow:0 2px 0 #5866b3 inset,0 -6px 0 #1d2449 inset,0 18px 30px -14px rgba(28,35,51,.55);
+  display:flex;flex-direction:column;gap:16px;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+}
+.earpiece{display:flex;justify-content:center;gap:5px;height:6px}
+.earpiece i{width:22px;height:5px;border-radius:3px;background:#1a2045}
+.badge{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--display);color:#dfe5ff;font-size:15px;letter-spacing:.08em;
+}
+.badge small{font-family:var(--body);font-size:10px;letter-spacing:.12em;color:#aab4e6}
+.bezel{
+  background:#141a36;border-radius:14px 14px 22px 22px;padding:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,.4) inset;
+}
+canvas{
+  display:block;width:100%;aspect-ratio:84/48;border-radius:4px;background:var(--lcd);
+}
+.keys{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+  padding:4px 6px 0;
+}
+.key{
+  height:54px;border:0;border-radius:27px;
+  font-family:var(--display);font-size:20px;color:var(--ink);
+  background:linear-gradient(#f2f5f0,#cfd6ce);
+  box-shadow:0 3px 0 #8b94a3,0 5px 8px rgba(0,0,0,.35);
+  cursor:pointer;touch-action:none;
+}
+.key.is-down,.key:active{transform:translateY(3px);box-shadow:0 0 0 #8b94a3,0 1px 3px rgba(0,0,0,.4)}
+.key:focus-visible,.game:focus-visible{outline:3px solid var(--signal);outline-offset:3px}
+.key.ok{background:linear-gradient(#f0764f,var(--signal));color:#fff;box-shadow:0 3px 0 #99351a,0 5px 8px rgba(0,0,0,.35)}
+.key.ok.is-down,.key.ok:active{box-shadow:0 0 0 #99351a,0 1px 3px rgba(0,0,0,.4)}
+.key.small{font-size:14px;letter-spacing:.06em}
+.keys .spec{
+  align-self:center;text-align:center;font-size:10px;letter-spacing:.12em;color:#aab4e6;
+}
+
+/* ---------- index ---------- */
+.side{display:flex;flex-direction:column;gap:22px;min-width:0}
+h2{
+  font-family:var(--body);font-weight:600;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;
+}
+.games{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.game{
+  width:100%;display:grid;grid-template-columns:1fr auto;gap:2px 16px;
+  padding:12px 4px;border:0;border-bottom:1px solid #aab3ac;background:none;
+  font:inherit;color:inherit;text-align:left;cursor:pointer;
+}
+.game:hover{background:var(--paper-deep)}
+.game b{font-family:var(--display);font-size:22px;font-weight:700;line-height:1.1}
+.game .how{grid-column:1;color:var(--ink-soft);font-size:13px}
+.game .best{
+  grid-row:1 / span 2;grid-column:2;align-self:center;text-align:right;
+  font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-soft);
+}
+.game .best strong{display:block;font-size:20px;color:var(--ink);font-weight:600}
+.controls{
+  display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:13px;
+}
+.controls dt{font-weight:600;white-space:nowrap}
+.controls dd{margin:0;color:var(--ink-soft)}
+.note{font-size:12px;color:var(--ink-soft);max-width:60ch;margin:0}
+
+@media (min-width:820px){
+  .page{grid-template-columns:1fr 360px;column-gap:56px;padding-top:48px}
+  header.top{grid-column:1}
+  .stage{grid-column:2;grid-row:1 / span 2;align-items:flex-start}
+  .side{grid-column:1}
+}
+
+/* ---------- feedback ---------- */
+.feedback{grid-column:1 / -1;border-top:2px solid var(--ink);padding-top:14px}
+.feedback form{display:grid;gap:14px;max-width:560px}
+.feedback label,.feedback legend{font-size:13px;font-weight:600;padding:0}
+.feedback fieldset{border:0;margin:0;padding:0;display:grid;gap:6px}
+.stars{display:flex;gap:6px}
+.stars input{position:absolute;opacity:0;width:1px;height:1px}
+.stars label{
+  width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
+  font-size:24px;line-height:1;color:#9aa49c;background:var(--paper-deep);border-radius:8px;
+}
+.stars label.lit{color:#fff;background:var(--signal)}
+.stars input:focus-visible + label{outline:3px solid var(--signal);outline-offset:3px}
+.field{display:grid;gap:6px}
+.feedback select,.feedback textarea{
+  font:inherit;color:var(--ink);background:#f4f7f3;border:1px solid #8f9a92;border-radius:6px;padding:10px;width:100%;
+}
+.feedback textarea{min-height:110px;resize:vertical}
+.feedback select:focus-visible,.feedback textarea:focus-visible,.btn:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{
+  font:inherit;font-weight:600;font-size:14px;padding:11px 16px;border-radius:6px;cursor:pointer;
+  border:2px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;display:inline-block;
+}
+.btn.ghost{background:none;color:var(--ink)}
+#fb-status{font-size:13px;color:var(--ink-soft);margin:0;min-height:1.5em}
+
+/* ---------- contact footer ---------- */
+.contact{
+  grid-column:1 / -1;border-top:2px solid var(--ink);padding-top:14px;
+  display:flex;flex-wrap:wrap;gap:6px 28px;align-items:baseline;font-size:13px;
+}
+.contact h2{margin:0;flex-basis:100%}
+.contact p{margin:0;color:var(--ink-soft)}
+.contact a{color:var(--ink);font-weight:600;text-decoration-color:var(--signal);text-underline-offset:3px;overflow-wrap:anywhere}
+.contact a:focus-visible{outline:3px solid var(--signal);outline-offset:3px}

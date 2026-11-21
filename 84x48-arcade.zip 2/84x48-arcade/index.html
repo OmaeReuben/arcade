@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>84x48 Arcade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="eyebrow">Monochrome handset games, rebuilt for the browser</div>
+    <h1>84<span>x</span>48 Arcade</h1>
+    <p class="lede">Six pocket games, one of them for two players over a room ID, drawn on an 84 by 48 pixel LCD, the same grid early mobile phones had. Play with the keys under the screen or with your keyboard.</p>
+  </header>
+
+  <div class="stage">
+    <div class="handset" id="handset">
+      <div class="earpiece" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="badge"><span>ARC-84</span><small>DUAL BAND</small></div>
+      <div class="bezel"><canvas id="lcd" width="504" height="288" aria-label="Game screen"></canvas></div>
+      <div class="keys">
+        <button class="key small" id="key-back" data-k="back" aria-label="Back to menu">C</button>
+        <button class="key" id="key-up" data-k="up" aria-label="Up">&#9650;</button>
+        <button class="key small" id="key-sound" aria-pressed="true" aria-label="Sound on or off">SND</button>
+        <button class="key" id="key-left" data-k="left" aria-label="Left">&#9664;</button>
+        <button class="key ok" id="key-ok" data-k="ok" aria-label="OK">OK</button>
+        <button class="key" id="key-right" data-k="right" aria-label="Right">&#9654;</button>
+        <span class="spec" aria-hidden="true">84&times;48</span>
+        <button class="key" id="key-down" data-k="down" aria-label="Down">&#9660;</button>
+        <span class="spec" aria-hidden="true">30 FPS</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="side">
+    <section>
+      <h2>Games and your best scores</h2>
+      <ul class="games" id="games"></ul>
+    </section>
+    <section>
+      <h2>Controls</h2>
+      <dl class="controls">
+        <dt>Arrows / WASD</dt><dd>Move</dd>
+        <dt>Enter / Space</dt><dd>OK, start, launch, flip</dd>
+        <dt>Esc / Backspace</dt><dd>Back to the game menu</dd>
+        <dt>M</dt><dd>Sound on or off</dd>
+      </dl>
+    </section>
+    <p class="note">Every game here is original code written for this page: no ROMs, no emulation, no sprites lifted from any handset. Best scores are kept in this browser only.</p>
+  </div>
+  <section class="feedback" id="feedback">
+    <h2>Rate it and leave feedback</h2>
+    <form id="fb-form" novalidate>
+      <fieldset>
+        <legend>Your rating</legend>
+        <div class="stars" id="fb-stars">
+          <input type="radio" name="rating" id="fb-star-1" value="1"><label for="fb-star-1" aria-label="1 star">&#9733;</label>
+          <input type="radio" name="rating" id="fb-star-2" value="2"><label for="fb-star-2" aria-label="2 stars">&#9733;</label>
+          <input type="radio" name="rating" id="fb-star-3" value="3"><label for="fb-star-3" aria-label="3 stars">&#9733;</label>
+          <input type="radio" name="rating" id="fb-star-4" value="4"><label for="fb-star-4" aria-label="4 stars">&#9733;</label>
+          <input type="radio" name="rating" id="fb-star-5" value="5"><label for="fb-star-5" aria-label="5 stars">&#9733;</label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="fb-game">Which game?</label>
+        <select id="fb-game"><option value="The whole arcade">The whole arcade</option></select>
+      </div>
+      <div class="field">
+        <label for="fb-text">What worked, what broke, what should be added?</label>
+        <textarea id="fb-text" maxlength="1200"></textarea>
+      </div>
+      <div class="actions">
+        <a class="btn" id="fb-mail" href="mailto:reubenomae207@mail.com">Open email draft</a>
+        <button class="btn ghost" id="fb-copy" type="button">Copy feedback</button>
+      </div>
+      <p id="fb-status" role="status">Feedback goes by email to reubenomae207@mail.com. Nothing is sent until you send the draft.</p>
+    </form>
+  </section>
+  <footer class="contact">
+    <h2>Contact</h2>
+    <p>Email <a href="mailto:reubenomae207@mail.com">reubenomae207@mail.com</a></p>
+    <p>Telephone <a href="tel:+25469320691">+25469320691</a></p>
+  </footer>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
